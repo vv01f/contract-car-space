@@ -1,0 +1,253 @@
+\documentclass[fontsize=11pt,a4paper,parskip=half]{scrreprt}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+\usepackage{charter,helvet}
+\usepackage{textcomp}
+
+\usepackage[clausemark=forceboth,
+juratotoc,
+juratocnumberwidth=2.5em]
+{scrjura}
+\useshorthands{'}
+\defineshorthand{'S}{\Sentence\ignorespaces}
+\defineshorthand{'.}{. \Sentence\ignorespaces}
+
+\usepackage[paper=portrait,left=25mm,right=25mm,top=30mm,bottom=30mm]{geometry}
+\usepackage{tabularx}
+\setlength{\extrarowheight}{1.3ex}
+\usepackage[right]{eurosym}
+\usepackage[locale=DE]{siunitx}
+%~ \newcommand{\areaval}[1]{{#1}\,\si{\meter\squared}}
+\usepackage{formular}
+\setFRMfontsize{12}
+%\usepackage{textcomp}
+%\usepackage{amsmath}
+\usepackage[onehalfspacing]{setspace}
+%\usepackage{selinput}
+%\SelectInputMappings{adieresis={ä},  germandbls={ß}}
+\usepackage[babel,german=quotes]{csquotes}
+
+\KOMAoptions{juratitlepagebreak=false}
+
+%\usepackage{fancyhdr}
+%\chead{}
+%\rhead[]{}
+%\lhead[]{}
+%\pagestyle{fancy}
+
+\setlength{\parindent}{0pt}
+%\setlength{\parskip}{\baselineskip}
+
+% RENT just use one of these
+% just a blank field to write in sth by hand
+\newcommand{\Rent}{{\def\hfill{\hskip 7em plus 1fill}\dotfill}}
+
+% PAYDAY just use one of these
+% just a blank field to write in sth by hand
+\newcommand{\Payday}{{\def\hfill{\hskip 7em plus 1fill}\dotfill}}
+% first day of period
+%\newcommand{\Payday}{first day of period}
+
+% SECURITY DEPOSIT just use one of these
+% just a blank field to write in sth by hand
+\newcommand{\Security}{{\def\hfill{\hskip 7em plus 1fill}\dotfill}}
+% 300 EUR
+%\newcommand{\Security}{\EUR{300}}
+% 1200 PLN
+%\newcommand{\Security}{\unit[1200]{PLN}}
+
+\input{20200303-Mietvertrag-Details}
+
+% ACCOUNT DETAILS just use one of these
+% just a blank field to write in sth by hand
+\newcommand{\Account}{{\def\hfill{\hskip 7em plus 1fill}\dotfill}}
+% account details prefilled
+%\newcommand{\Account}{Name: , IBAN: , BIC: }
+
+
+%\title{Rental Agreement}
+%\subtitle{}
+\author{\empty}
+\date{\empty}
+
+% Keine "Schusterjungen"
+	\clubpenalty = 10000
+% Keine "Hurenkinder"
+	\widowpenalty = 10000 \displaywidowpenalty = 10000
+
+%Formularfelder
+\newFRMfield{gnamef}{40mm}
+\newFRMfield{fnamef}{40mm}
+\newFRMfield{addrf}{40mm}
+\newFRMfield{cityf}{40mm}
+\newFRMfield{statef}{40mm}
+\newFRMfield{phonef}{40mm}
+\newFRMfield{emailf}{40mm}
+\newFRMfield{bdatef}{40mm}
+\newFRMfield{bplacef}{40mm}
+\newFRMfield{splacef}{2cm}[Ort]
+\newFRMfield{sdatef}{2cm}[Datum]
+\newFRMfield{lsignf}{4cm}[\Landlord{}]
+\newFRMfield{tsignf}{4cm}[Mieter]
+\newFRMfield{f}{1mm}[]
+
+%metadata
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+\hypersetup{
+	pdftitle={Mietvertrag Nr. \ContractNr},
+	pdfauthor={\ContractAuthor},
+}
+
+\begin{document}
+
+\subject{Mietvertrag}
+\title{Mietvertrag Nr.\,\ContractNr}
+\subtitle{Stellplatz~\ContractObject}
+%~ \date{01.\,03.\,2020}
+
+\begin{center}
+	\huge{Mietvertrag Nr.\,\ContractNr}
+	\normalsize
+
+\vspace{1ex} 
+
+für
+den Stellplatz~\ContractObject \\
+\LandlordAddressStreet~\LandlordAddressHouseNo{} %Wohnung~\LandlordAddressFlat
+\\
+in \LandlordAddressZIP~\LandlordAddressPlace \\
+
+%~ \vspace{1ex} 
+
+\addsec{Vertragsparteien}
+%~ \Large zwischen den Vertragsparteien
+
+\end{center}
+
+\large{\Landlord{}}
+	\noindent
+\tabcolsep=1.1mm 
+\singlespace
+	\begin{tabular}{llp{0.5ex}ll}
+		Vorname(n)		 & \useFRMfield{gnamef}[\LandlordFName] & & Nachname(n)		 & \useFRMfield{fnamef}[\LandlordName] \\
+		Adresse			 & \useFRMfield{addrf}[\LandlordAddressStreet~\LandlordAddressHouseNo] & & PLZ, Stadt		 & \useFRMfield{cityf}[\LandlordAddressZIP, \LandlordAddressPlace] \\
+		Email			 & \multicolumn{4}{l}{ \useFRMfield{emailf}[\LandlordAddressEmail] } \\
+		PGP-Fingerabdruck	 & \multicolumn{4}{l}{ \useFRMfield{emailf}[\LandlordAddressPGP] }  \\
+	\end{tabular}
+
+\vspace{1em}
+
+\large{\Tennant}
+	\noindent
+\tabcolsep=1.1mm 
+\singlespace
+% empty paper form
+	\begin{tabular}{llp{0.5ex}ll}
+		Vorname(n)		 & \useFRMfield{gnamef}[\hspace{4cm}] & & Nachname(n)		 & \useFRMfield{fnamef}[\hspace{4cm}]	\\
+		Adresse			 & \useFRMfield{addrf}[\hspace{4cm}]	& & PLZ, Stadt		 & \useFRMfield{cityf}[\hspace{15mm}, \hspace{20.5mm}] \\
+%		Bundesland/Staat & \useFRMfield{statef}[]	& & & \\
+		Geburtsdatum	 & \useFRMfield{bdatef}[\hspace{1cm}.\hspace{1cm}.\hspace{15.5mm}]	& & Geburtsort		 & \useFRMfield{bplacef}[\hspace{4cm}]	\\
+		%~ Telefon			 & \useFRMfield{phonef}[\hspace{4cm}]	& &		Email			 & \useFRMfield{emailf}[\hspace{4cm}] \\
+		Email			 & \multicolumn{4}{l}{ \useFRMfield{emailf}[\hspace{106mm}] } \\
+		PGP-Fingerabdruck	 & \multicolumn{4}{l}{ \useFRMfield{emailf}[\hspace{106mm}] }  \\
+	\end{tabular}
+% to be filled with known data
+	%~ \begin{tabular}{llp{0.5ex}ll}
+		%~ Vorname(n)		 & \useFRMfield{gnamef}[\TennantFName] & & Nachname(n)		 & \useFRMfield{fnamef}[\TennantName]	\\
+		%~ Adresse			 & \useFRMfield{addrf}[\TennantAddressStreet~\TennantAddressHouseNo]	& & PLZ, Stadt		 & \useFRMfield{cityf}[\TennantAddressZIP, \TennantAddressPlace] \\
+%~ %		Bundesland/Staat & \useFRMfield{statef}[]	& & & \\
+		%~ Geburtsdatum	 & \useFRMfield{bdatef}[\TennantBirthDate]	& & Geburtsort		 & \useFRMfield{bplacef}[\TennantBirthPlace]	\\
+		%~ Telefon			 & \useFRMfield{phonef}[\TennantAddressPhone]	& &		Email			 & \useFRMfield{emailf}[\TennantAddressEmail] \\
+		%~ Email			 & \multicolumn{4}{l}{ \useFRMfield{emailf}[\TennantAddressEmail] } \\
+		%~ PGP-Fingerabdruck	 & \multicolumn{4}{l}{ \useFRMfield{emailf}[\TennantAddressPGP] }  \\
+	%~ \end{tabular}
+
+\appendix
+
+\begin{contract}
+
+%~ \vspace{1.5em} 
+%~ wird folgendes vereinbart: 
+
+%§1
+\Clause{title={Mietgegenstand}}
+
+'S Der Vermieter vermietet an den Mieter den PKW-Stellplatz \ContractObject auf dem Geländer der Wohnungseigentümergemeinschaft \LandlordAddressStreet~\LandlordAddressHouseNo.
+'S Die Nutzung ist nur innerhalb der mit der Fahrbahn verbundenen Markierungen
+%~ für Kfz mit den Kennzeichen: \TennantNumberplates{}
+gestattet.
+
+Der Stellplatz ist auf der Skizze im Anhang~1 gekennzeichnet.
+
+%~ Das Abstellen von Gastfahrzeugen ist unverzüglich beim Vermieter zu melden.
+
+Die Untervermietung, gewerbliche Nutzung oder sonstige entgeltliche Gebrauchsüberlassung an Dritte, ist dem Mieter nicht gestattet.
+
+\newpage
+
+%§2
+\Clause{title={Mietdauer}}
+
+Das Mietverhältnis und die damit einhergehende Nutzung beginnen am \useFRMfield{f}[\ContractBegin]. 
+
+Es ist
+	%~ bis zum \useFRMfield{f}[\hspace{2ex}.\hspace{2ex}.20\hspace{2ex}] befristet
+	unbefristet
+	%~ mit einer Mindestmietdauer von 1\,Jahr%
+. 
+
+%§3
+\Clause{title={Mietzins und Zahlung}}
+
+%~ 'S %
+Die Miete beträgt \EUR{\ContractPrice{}} je Kalenderjahr.
+%~ 'S Die Miete beinhaltet zum Zeitpunkt des Vertragsabschlusses \ContractVAT{}\,\% Umsatzsteuer; für den Fall von Änderungen des Steuersatzes wird die Miete neu festgelegt.
+'S Die Miete beinhaltet zum Zeitpunkt des Vertragsabschlusses keine Umsatzsteuer; für den Fall von Änderungen wird die Miete neu festgelegt.
+
+Auf die Abrechnung von Betriebskosten wird einvernehmlich verzichtet.
+
+Teilzahlungen für angebrochene Kalenderjahre werden in Bruchteilen für ganze Kalendertage des betreffenden Jahres berechnet.
+
+{Die Miete ist für das Kalenderjahr im Voraus bis zum 25. des jeweiligen Vormonats und zum Mietbeginn vor Nutzungsbeginn auf folgendes Konto einzuzahlen:\\%
+%~ \tabcolsep=1.1mm \singlespace%
+\begin{tabular}{ll}
+Konto-Inhaber:	& \useFRMfield{f}[\LandlordFullName] \\
+IBAN:			& \useFRMfield{f}[\LandlordIBAN] \\
+BIC:			& \useFRMfield{f}[\LandlordBIC] \\
+%Kontonummer:	& \useFRMfield{f}[\LandlordAccNo] \\
+%BLZ:			& \useFRMfield{f}[\LandlordBLZ] \\
+Bank:			& \useFRMfield{f}[\LandlordBank] \\
+Verwendungszweck:	& \useFRMfield{f}[\ContractTxMsg] \\
+\end{tabular}
+}
+
+%§4
+\Clause{title={Nebenabreden}}
+
+'S Mündliche Abreden bestehen nicht.
+'S Änderungen dieses Vertrages bedürfen der Schriftform.
+
+\end{contract}
+
+	\vfill
+%	\vspace{3em}
+
+	\Large{Unterschriften}
+
+%    \vspace{1cm}
+
+	\noindent
+	\begin{tabularx}{\linewidth}{llX}
+		\hspace{5cm}	& \hspace{7cm}		& \\
+		\useFRMfield{splacef}[\ContractSignPlace],		& \useFRMfield{sdatef}[\hspace{1cm}.\hspace{1cm}.20\hspace{1cm}]			& \\
+%	\noindent
+		\vspace{1.5em}	& & 	\\
+		\useFRMfield{lsignf}		& \useFRMfield{tsignf} &	\\
+	\end{tabularx}
+
+\end{document}
+
